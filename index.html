@@ -20,6 +20,10 @@ const data = await CSV.fetchJSON(fn);
 
 const show = (id) => {
   const item = data.find(i => i.id == id);
+  if (!item) {
+    location.href = id;
+    return;
+  }
   divq.textContent = item.question;
   diva1.style.display = item.answer1_label ? "block" : "none";
   diva1.textContent = item.answer1_label;
@@ -34,6 +38,9 @@ h1title.onclick = () => show(1);
 </script>
 
 <style>
+body {
+  font-family: sans-serif;
+}
 h1 {
   text-align: center;
   font-size: 100%;
@@ -56,8 +63,10 @@ h1 {
   padding: .5em;
   border: 2px solid black;
 }
-.a:hover {
-  background-color: #faaaaa;
+@media (hover: hover) {
+  .a:hover {
+    background-color: #faaaaa;
+  }
 }
 a {
   color: gray;
