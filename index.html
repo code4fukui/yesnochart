@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="icon" href="data:">
+<title>yesnochart</title>
+</head><body>
+<h1 id=h1title>yesnochart</h1>
+<div class=box>
+  <div class=q id=divq></div>
+  <div class=a id=diva1></div>
+  <div class=a id=diva2></div>
+</div>
+
+<footer>
+<a href=https://github.com/code4fukui/yesnochart/>src on GitHub</a><br>
+</footer>
+
+<script type="module">
+import { CSV } from "https://js.sabae.cc/CSV.js";
+
+const fn = location.hash.substring(1) || "data/sample.csv";
+const data = await CSV.fetchJSON(fn);
+
+const show = (id) => {
+  const item = data.find(i => i.id == id);
+  divq.textContent = item.question;
+  diva1.style.display = item.answer1_label ? "block" : "none";
+  diva1.textContent = item.answer1_label;
+  diva1.onclick = () => show(item.answer1_id);
+  diva2.style.display = item.answer2_label ? "block" : "none";
+  diva2.textContent = item.answer2_label;
+  diva2.onclick = () => show(item.answer2_id);
+};
+show(1);
+
+h1title.onclick = () => show(1);
+</script>
+
+<style>
+h1 {
+  text-align: center;
+  font-size: 100%;
+  margin: .5em;
+}
+.box {
+  background-color: #f8f8f8;
+  padding: 1em;
+}
+.q, .a {
+  word-wrap: break-word;
+}
+.q {
+  font-size: 200%;
+  margin: .5em;
+}
+.a {
+  font-size: 150%;
+  margin: .5em;
+  padding: .5em;
+  border: 2px solid black;
+}
+.a:hover {
+  background-color: #faaaaa;
+}
+a {
+  color: gray;
+}
+footer {
+  margin: 1em;
+  text-align: center;
+}
+</style>
+
+</body></html>
