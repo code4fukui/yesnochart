@@ -1,0 +1,9 @@
+id,question,answer1_label,answer1_id,answer2_label,answer2_id,answer3_label,answer3_id
+1,YES/NOチャートを知っている,YES,3,NO,2,その他,8
+2,YES/NOチャートはYESかNOなど、2択でガイドしてくれるツールです,OK,3,,,その他,8
+3,YES/NOチャートを作ってみたい？,YES,5,NO,4,その他,8
+4,つくりたくなったらまたおいでください〜,OK,https://fukuno.jig.jp/4408,やっぱりつくりたい,5,その他,8
+5,このYES/NOチャートはGitHubでのオープンソースなので、どなたでも改造できます！,やった！作ってみる！,https://github.com/code4fukui/yesnochart/,GitHubって？,6,その他,8
+6,GitHubはオープンソースを共有するサービスです,試してみる！,https://fukuno.jig.jp/2875,難しそう,7,その他,8
+7,簡単に作れるサービスがあるといい？,YES,8,NO,4,その他,8
+8,ご要望、お待ちしています！,要望する,https://x.com/taisukef,,,その他,8

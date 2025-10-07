@@ -2,10 +2,8 @@
 <title>yesnochart</title>
 </head><body>
 <h1 id=h1title>yesnochart</h1>
-<div class=box>
+<div class=box id=box>
   <div class=q id=divq></div>
-  <div class=a id=diva1></div>
-  <div class=a id=diva2></div>
 </div>
 
 <div class=qr>
@@ -22,6 +20,16 @@ import { CSV } from "https://js.sabae.cc/CSV.js";
 const fn = location.hash.substring(1) || "data/sample.csv";
 const data = await CSV.fetchJSON(fn);
 
+const nans = Object.keys(data[0]).filter(i => i.startsWith("answer")).length / 2;
+console.log(nans);
+const divans = [];
+for (let i = 0; i < nans; i++) {
+  const div = document.createElement("div");
+  div.className = "a";
+  box.appendChild(div);
+  divans.push(div);
+}
+
 const show = (id) => {
   const item = data.find(i => i.id == id);
   if (!item) {
@@ -29,12 +37,14 @@ const show = (id) => {
     return;
   }
   divq.textContent = item.question;
-  diva1.style.display = item.answer1_label ? "block" : "none";
-  diva1.textContent = item.answer1_label;
-  diva1.onclick = () => show(item.answer1_id);
-  diva2.style.display = item.answer2_label ? "block" : "none";
-  diva2.textContent = item.answer2_label;
-  diva2.onclick = () => show(item.answer2_id);
+  for (let i = 0; i < nans; i++) {
+    const diva = divans[i];
+    const slabel = `answer${i + 1}_label`;
+    const sid = `answer${i + 1}_id`;
+    diva.style.display = item[slabel] ? "block" : "none";
+    diva.textContent = item[slabel];
+    diva.onclick = () => show(item[sid]);
+  }
 };
 show(1);
 
